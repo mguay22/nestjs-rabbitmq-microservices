@@ -1,0 +1,48 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/orders/src",
+  "monorepo": true,
+  "root": "apps/orders",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/orders/tsconfig.app.json"
+  },
+  "projects": {
+    "orders": {
+      "type": "application",
+      "root": "apps/orders",
+      "entryFile": "main",
+      "sourceRoot": "apps/orders/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/orders/tsconfig.app.json"
+      }
+    },
+    "billing": {
+      "type": "application",
+      "root": "apps/billing",
+      "entryFile": "main",
+      "sourceRoot": "apps/billing/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/billing/tsconfig.app.json"
+      }
+    },
+    "auth": {
+      "type": "application",
+      "root": "apps/auth",
+      "entryFile": "main",
+      "sourceRoot": "apps/auth/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/auth/tsconfig.app.json"
+      }
+    },
+    "common": {
+      "type": "library",
+      "root": "libs/common",
+      "entryFile": "index",
+      "sourceRoot": "libs/common/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/common/tsconfig.lib.json"
+      }
+    }
+  }
+}
