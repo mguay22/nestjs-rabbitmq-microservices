@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: billing
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: billing
+  template:
+    metadata:
+      labels:
+        app: billing
+    spec:
+      containers:
+        - name: billing
+          image: mguay/ordering-app_billing
+          env:
+            - name: RABBIT_MQ_BILLING_QUEUE
+              value: billing
+            - name: RABBIT_MQ_AUTH_QUEUE
+              value: auth
+            - name: MONGODB_URI
+              value: mongodb://root:password123@ordering-app-mongodb-headless:27017/
+            - name: RABBIT_MQ_URI
+              value: amqp://user1:password123@ordering-app-rabbitmq:5672

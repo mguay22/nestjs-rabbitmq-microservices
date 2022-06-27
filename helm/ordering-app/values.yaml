@@ -1,0 +1,9 @@
+mongodb:
+  architecture: replicaset
+  auth:
+    rootPassword: password123
+
+rabbitmq:
+  auth:
+    username: user1
+    password: password123

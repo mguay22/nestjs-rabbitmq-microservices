@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orders
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: orders
+  template:
+    metadata:
+      labels:
+        app: orders
+    spec:
+      containers:
+        - name: orders
+          image: mguay/ordering-app_orders
+          ports:
+            - containerPort: 3000
+          env:
+            - name: PORT
+              value: '3000'
+            - name: RABBIT_MQ_BILLING_QUEUE
+              value: billing
+            - name: RABBIT_MQ_AUTH_QUEUE
+              value: auth
+            - name: MONGODB_URI
+              value: mongodb://root:password123@ordering-app-mongodb-headless:27017/
+            - name: RABBIT_MQ_URI
+              value: amqp://user1:password123@ordering-app-rabbitmq:5672
